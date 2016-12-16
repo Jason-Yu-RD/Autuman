@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jason.autuman.dao.TableInfoDao">
+
+    <resultMap id="BaseResultMap" type="com.jason.autuman.domain.po.ColumnInfo">
+        <result column="TABLE_NAME" property="tableName"/>
+        <result column="COLUMN_NAME" property="columnName"/>
+        <result column="ORDINAL_POSITION" property="ordinalPosition"/>
+        <result column="DATA_TYPE" property="dataType"/>
+        <result column="COLUMN_COMMENT" property="columnComment"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <![CDATA[
+          TABLE_NAME, COLUMN_NAME,ORDINAL_POSITION,DATA_TYPE,COLUMN_COMMENT
+        ]]>
+    </sql>
+    <select id="selectCloumnListByTableName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM information_schema.COLUMNS
+        WHERE
+        <![CDATA[
+          TABLE_NAME = '${tableName}'
+        ]]>
+    </select>
+</mapper>

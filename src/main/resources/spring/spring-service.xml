@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="tableInfoService" class="com.jason.autuman.service.impl.TableInfoServiceImpl">
+        <property name="tableInfoDao" ref="tableInfoDao"/>
+        <property name="importStrMap">
+            <map>
+                <entry key="timestamp" value="java.sql.Timestamp"/>
+                <entry key="datetime" value="java.util.Date"/>
+                <entry key="decimal" value="java.math.BigDecimal"/>
+            </map>
+        </property>
+        <property name="javaTypeMap">
+            <map>
+                <entry key="tinyint" value="Integer"/>
+                <entry key="smallint" value="Integer"/>
+                <entry key="int" value="Integer"/>
+                <entry key="bigint" value="Long"/>
+                <entry key="float" value="Double"/>
+                <entry key="double" value="Double"/>
+                <entry key="decimal" value="BigDecimal"/>
+                <entry key="datetime" value="Date"/>
+                <entry key="varchar" value="String"/>
+                <entry key="text" value="String"/>
+                <entry key="timestamp" value="Timestamp"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>
